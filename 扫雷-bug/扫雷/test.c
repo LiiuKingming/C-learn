@@ -9,8 +9,6 @@
 //(2). mine_map 表示地雷的布局(0不是地雷,!是地雷)
 #define MAX_ROW 9
 #define MAX_COL 9
-#define MAX_ROWS 11
-#define MAX_COLS 11
 #define MINE_COUNT 10
 
 void Init(char show_map[MAX_ROW][MAX_COL],
