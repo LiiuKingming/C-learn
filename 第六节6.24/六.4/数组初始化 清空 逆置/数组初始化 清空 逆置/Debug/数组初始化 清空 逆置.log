@@ -1,0 +1,14 @@
+﻿生成启动时间为 2019/6/30 11:50:07。
+     1>项目“C:\Users\28943\Desktop\bit\作业\第六节6.24\六.4\数组初始化 清空 逆置\数组初始化 清空 逆置\数组初始化 清空 逆置.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt test.c
+         test.c
+     1>c:\users\28943\desktop\bit\作业\第六节6.24\六.4\数组初始化 清空 逆置\数组初始化 清空 逆置\test.c(22): error C2065: “p”: 未声明的标识符
+     1>c:\users\28943\desktop\bit\作业\第六节6.24\六.4\数组初始化 清空 逆置\数组初始化 清空 逆置\test.c(22): error C2109: 下标要求数组或指针类型
+     1>c:\users\28943\desktop\bit\作业\第六节6.24\六.4\数组初始化 清空 逆置\数组初始化 清空 逆置\test.c(25): error C2065: “p”: 未声明的标识符
+     1>c:\users\28943\desktop\bit\作业\第六节6.24\六.4\数组初始化 清空 逆置\数组初始化 清空 逆置\test.c(25): error C2109: 下标要求数组或指针类型
+     1>已完成生成项目“C:\Users\28943\Desktop\bit\作业\第六节6.24\六.4\数组初始化 清空 逆置\数组初始化 清空 逆置\数组初始化 清空 逆置.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.40
