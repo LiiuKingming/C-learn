@@ -66,9 +66,42 @@ void AddPersonInfo(){
         //扩容
         printf("扩容中...\n");
         g_address_book.capacity+=10;
+
+        //先将结构体中的联系人保存到文件再进行释放
+        printf("*保存联系人*\n");
+        FILE* fp=fopen("d:/test.txt","w");
+        for (int i = 0; i <g_address_book.size ; ++i) {
+            fwrite(g_address_book.person,1, sizeof(PersonInfo),fp);
+        }
+        free(g_address_book.person);
+        g_address_book.person=NULL;
+        printf("保存联系人成功!\n");
+
         free(g_address_book.person);
         g_address_book.person=(PersonInfo*)malloc(sizeof(PersonInfo)*g_address_book.capacity);
         printf("扩容成功!\n");
+
+        FILE* fp1=fopen("D:/test.txt","r");
+        if(fp1==NULL){
+            perror("读取联系人结果:\n");
+            return;
+        }
+        PersonInfo tmp={0};
+        int count=0;
+        while(fread(&tmp,1, sizeof(PersonInfo),fp1)){
+            ++count;
+            printf("正在读取第%d条联系人信息...\n",count);
+            g_address_book.capacity+=10;
+            free(g_address_book.person);
+            g_address_book.person=(PersonInfo*)malloc(sizeof(PersonInfo)*g_address_book.capacity);
+
+            g_address_book.person[g_address_book.size]=tmp;
+            ++g_address_book.size;
+        }
+        fclose(fp1);
+        fp1=NULL;
+        printf("读取联系人成功!\n");
+
     }
     PersonInfo* person_info=&g_address_book.person[g_address_book.size];
     printf("请输入联系人姓名:");
@@ -264,7 +297,6 @@ void SavePersonInfo(){
     free(g_address_book.person);
     g_address_book.person=NULL;
     printf("保存联系人成功!\n");
-    printf("goodbye!\n");
 }
 
 typedef  void(*Func)();
@@ -293,11 +325,13 @@ int main(){
         }
         if(choice==0){
             if(g_address_book.size<=0){
+                SavePersonInfo();
                 printf("通讯录已为空无需保存!\n");
                 printf("goodbye!\n");
                 break;
             }else{
                 SavePersonInfo();
+                printf("goodbye!\n");
                 break;
             }
         }
