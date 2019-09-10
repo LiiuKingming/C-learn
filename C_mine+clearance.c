@@ -58,10 +58,10 @@ void PrintMap(char map[MAX_ROWS][MAX_COLS]){
 
 void GetPos(char show_map[MAX_ROWS][MAX_COLS], int*row, int*col){
     while (1){
-        printf("请输入一组坐标:");
+        printf("请输入一组坐标x,y:");
         //scanf的参数是一个指针类型的变量
         //此时此刻row和col本来就是指针int,就不用再&
-        scanf("%d %d", row, col);
+        scanf("%d,%d", row, col);
         //合法性判定
         if (*row <= 0|| *row > MAX_ROW||
             *col <= 0|| *col > MAX_COL){
