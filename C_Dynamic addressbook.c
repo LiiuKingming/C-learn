@@ -68,6 +68,7 @@ void AddPersonInfo(){
         free(g_address_book.person);
         g_address_book.person=(PersonInfo*)malloc(sizeof(PersonInfo)*g_address_book.capacity);
         printf("扩容成功!\n");
+
     }
     PersonInfo* person_info=&g_address_book.person[g_address_book.size];
     printf("请输入联系人姓名:");
