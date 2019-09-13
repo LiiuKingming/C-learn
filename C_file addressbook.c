@@ -59,6 +59,41 @@ void Empty(){
     //这个函数用来凑数,令编号和用户输入一致.
 }
 
+void ReadPersonInfo(){
+    FILE* fp=fopen("D:/test.txt","r");
+    if(fp==NULL){
+        perror("读取联系人结果:\n");
+        return;
+    }
+    PersonInfo tmp={0};
+    int count=0;
+    while(fread(&tmp,1, sizeof(PersonInfo),fp)){
+        ++count;
+        printf("正在读取第%d条联系人信息...\n",count);
+        g_address_book.capacity+=10;
+        free(g_address_book.person);
+        g_address_book.person=(PersonInfo*)malloc(sizeof(PersonInfo)*g_address_book.capacity);
+
+        g_address_book.person[g_address_book.size]=tmp;
+        ++g_address_book.size;
+    }
+    fclose(fp);
+    fp=NULL;
+    printf("读取联系人成功!\n");
+}
+
+void SavePersonInfo(){
+    assert(&g_address_book != NULL);
+    printf("*保存联系人*\n");
+    FILE* fp=fopen("d:/test.txt","w");
+    for (int i = 0; i <g_address_book.size ; ++i) {
+        fwrite(g_address_book.person,1, sizeof(PersonInfo),fp);
+    }
+    free(g_address_book.person);
+    g_address_book.person=NULL;
+    printf("保存联系人成功!\n");
+}
+
 void AddPersonInfo(){
     assert(&g_address_book != NULL);
     printf("*新增联系人*\n");
@@ -68,6 +103,8 @@ void AddPersonInfo(){
         g_address_book.capacity+=10;
 
         //先将结构体中的联系人保存到文件再进行释放
+        SavePersonInfo();
+#if 0
         printf("*保存联系人*\n");
         FILE* fp=fopen("d:/test.txt","w");
         for (int i = 0; i <g_address_book.size ; ++i) {
@@ -76,11 +113,11 @@ void AddPersonInfo(){
         free(g_address_book.person);
         g_address_book.person=NULL;
         printf("保存联系人成功!\n");
-
+#endif
         free(g_address_book.person);
         g_address_book.person=(PersonInfo*)malloc(sizeof(PersonInfo)*g_address_book.capacity);
         printf("扩容成功!\n");
-
+#if 0
         FILE* fp1=fopen("D:/test.txt","r");
         if(fp1==NULL){
             perror("读取联系人结果:\n");
@@ -101,7 +138,7 @@ void AddPersonInfo(){
         fclose(fp1);
         fp1=NULL;
         printf("读取联系人成功!\n");
-
+#endif
     }
     PersonInfo* person_info=&g_address_book.person[g_address_book.size];
     printf("请输入联系人姓名:");
